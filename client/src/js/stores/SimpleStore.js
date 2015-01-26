@@ -2,78 +2,56 @@ const AppDispatcher = require('../dispatcher/AppDispatcher');
 const AppConstants = require('../constants/AppConstants');
 const actions = require('../actions/AppActionCreator');
 
-var EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣播器
+const EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣播器
 
-//========================================================================
-//
-// Public API
-
-// 等同於 TodoStore extends EventEmitter
-// 從此取得廣播的能力
-// 由於將來會返還 TodoStore 出去，因此下面寫的會全變為 public methods
-var Store = {};
-
-// 所有 todo 資料
-
-// 目前選取的 todo 項目
+let Store = {};
 
 /**
- * 建立 Store class，並且繼承 EventEMitter 以擁有廣播功能
+ * @description
+ * Object.assign(obj1, obj2, ...) 把 Object.assign 就是把所有obj2 以後的 Object
+ * 都塞進去 obj1 這是 ES6 的 feature 現在必須使用 6to5 這個套件來處理，
+ * 我在 webpack.config.js 都有針對這一部分做處理
+ *
+ * 讓 Store 擁有所有 EventEmitter 的 method
+ * 主要是讓他能有 .on .emit 這兩個功能
  */
+
 Object.assign(Store, EventEmitter.prototype, {
 
-  getTodos: function() {
-    return arrTodos;
+  getTruth() {
+    return {};
   },
 
-  getSelectedItem: function() {
-    return selectedItem;
+  addChangeListener(callback) {
+    this.on(AppConstants.CHANGE_EVENT, callback);
+  },
+
+  removeChangeListener(callback) {
+    this.removeListener(AppConstants.CHANGE_EVENT, callback);
   }
 
 });
 
+/**
+ * 這邊是接收 Dispatcher 的地方，我們會針對 action.actionType 去 switch
+ *
+ * dispatchToken 只是一個簡單的 string，記錄著像 ID_1，ID_2 這樣的字串
+ * 可以用在 waitFor 裡面，當有兩個以上的 AppDispatcher 註冊這個事件就可以靠這個 Token
+ * 安排順序
+ */
 Store.dispatchToken = AppDispatcher.register(function eventHandlers(evt) {
 
   var action = evt.action;
 
   switch (action.actionType) {
 
-    case AppConstants.TODO_LOAD:
-      arrTodos = action.items;
-      console.log('Store 收到資料: ', arrTodos);
+    case AppConstants.SAVE:
       Store.emit(AppConstants.CHANGE_EVENT);
       break;
 
-    case AppConstants.TODO_CREATE:
-      arrTodos.push(action.item);
-      console.log('Store 新增: ', arrTodos);
-      Store.emit(AppConstants.CHANGE_EVENT);
-      break;
-
-    case AppConstants.TODO_REMOVE:
-      arrTodos = arrTodos.filter(function(item) {
-        return item != action.item;
-      })
-      console.log('Store 刪完: ', arrTodos);
-      Store.emit(AppConstants.CHANGE_EVENT);
-      break;
-
-    case AppConstants.TODO_UPDATE:
-      console.log('Store 更新: ', arrTodos);
-      Store.emit(AppConstants.CHANGE_EVENT);
-      break;
-
-    case AppConstants.TODO_SELECT:
-      console.log('Store 選取: ', action.item);
-      // 選取同樣的 item 就不用處理下去了
-      if (selectedItem != action.item) {
-        selectedItem = action.item;
-        Store.emit(AppConstants.CHANGE_EVENT);
-      }
-      break;
     default:
   }
 })
 
-//
+
 module.exports = Store;

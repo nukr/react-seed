@@ -11,7 +11,6 @@ let AppActionCreators = {
   },
 
   saveToStore(data){
-    console.log('hi');
     AppDispatcher.handleViewAction({
       actionType: AppConstants.SAVE,
       items: data

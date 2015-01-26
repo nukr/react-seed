@@ -1,16 +1,16 @@
-var AppConstants = require('../constants/AppConstants');
+const AppConstants = require('../constants/AppConstants');
 
-var Dispatcher = require('flux').Dispatcher;
+const Dispatcher = require('flux').Dispatcher;
 
 /**
  * flux-chat 內最新的 dispatcher
  */
-var AppDispatcher = new Dispatcher();
+let AppDispatcher = new Dispatcher();
 
 Object.assign(AppDispatcher, {
 
     handleServerAction: function(action) {
-        var payload = {
+        let payload = {
             source: AppConstants.SOURCE_SERVER_ACTION,
             action: action
         };
@@ -19,7 +19,7 @@ Object.assign(AppDispatcher, {
     },
 
     handleViewAction: function(action) {
-        var payload = {
+        let payload = {
             source: AppConstants.SOURCE_VIEW_ACTION,
             action: action
         };
@@ -27,7 +27,7 @@ Object.assign(AppDispatcher, {
     },
 
     handleRouterAction: function(path) {
-        var payload = {
+        let payload = {
             source: AppConstants.SOURCE_ROUTER_ACTION,
             action: path
         };

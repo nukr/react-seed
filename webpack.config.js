@@ -21,7 +21,7 @@ module.exports = {
   },
   module:{
     loaders: [
-      { test: /\.css$/, loader: 'css-loader'},
+      { test: /\.css$/, loader: 'style-loader!css-loader'},
       { test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
       { test: /\.jsx?$/, loaders: ['react-hot', '6to5-loader?experimental&optional=coreAliasing'], exclude: /node_modules/}
     ]

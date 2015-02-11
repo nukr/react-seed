@@ -13,4 +13,4 @@ gulp build
 
 ## Test
 
-mocha
+gulp test

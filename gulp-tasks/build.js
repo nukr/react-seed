@@ -1,3 +1,3 @@
 var gulp = require('gulp');
 
-gulp.task('build', ['build:html', 'build:react'])
+gulp.task('build', ['build:html', 'bundle']);

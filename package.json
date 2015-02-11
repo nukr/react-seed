@@ -18,8 +18,10 @@
     "react": "^0.12.2"
   },
   "devDependencies": {
-    "6to5": "^2.13.7",
-    "6to5-loader": "^2.0.0",
+    "6to5": "^3.5.3",
+    "6to5-core": "^3.5.3",
+    "6to5-loader": "^3.0.0",
+    "6to5-runtime": "^3.5.3",
     "chai": "^1.10.0",
     "core-js": "^0.4.7",
     "css-loader": "^0.9.1",

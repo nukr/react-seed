@@ -1,16 +1,7 @@
 React Seed
 ============
 
-## Under development
+## To Do
 
-gulp dev
-
-open http://localhost:3000/client/build
-
-## Production
-
-gulp build
-
-## Test
-
-gulp test
+* react-router
+* jest

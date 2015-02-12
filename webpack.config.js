@@ -1,21 +1,13 @@
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './client/src/js/boot.js',
+    './client/src/js/boot.js'
   ],
   output: {
     path: __dirname + '/client/build',
-    filename: 'bundle.js',
-    publicPath: '/client/build/'
+    filename: 'bundle.js'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
-  ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
@@ -23,7 +15,7 @@ module.exports = {
     loaders: [
       { test: /\.css$/, loader: 'style-loader!css-loader'},
       { test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
-      { test: /\.jsx?$/, loaders: ['react-hot', '6to5-loader?experimental&optional=selfContained'], exclude: /node_modules/}
+      { test: /\.jsx?$/, loaders: ['6to5-loader?experimental&optional=selfContained'], exclude: /node_modules/}
     ]
   }
 };

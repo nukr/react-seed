@@ -8,13 +8,6 @@ let AppActionCreators = {
       actionType: AppConstants.DATA_LOAD,
       items: data
     })
-  },
-
-  saveToStore(data){
-    AppDispatcher.handleViewAction({
-      actionType: AppConstants.SAVE,
-      items: data
-    })
   }
 
 };

@@ -19,24 +19,18 @@ let Main = React.createClass({
     store.removeChangeListener(this.change);
   },
 
+  change() {
+    this.setState(getTruth());
+  },
+
   render() {
     return(
       <div className="main">
-        <h1>Hi there! Hello React</h1>
-        <h2>its cool</h2>
-        <h3>so fucking perfect</h3>
-        <button onClick={ this.handleClick }>Change</button>
+        <h1>Hello React</h1>
       </div>
     )
-  },
-
-  handleClick() {
-    action.saveToStore();
-  },
-
-  change() {
-    this.setState(getTruth());
   }
+
 })
 
 module.exports = Main;

@@ -15,7 +15,7 @@ module.exports = {
     loaders: [
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
-      { test: /\.png$|\.jpe?g$|\.gif$/, loader: 'url?limit=10000' },
+      { test: /\.(jpe?g|png|gif)$/i, loader: 'url?limit=10000' },
       { test: /\.jsx?$/, loaders: ['6to5-loader?experimental&optional=selfContained'], exclude: /node_modules/}
     ]
   }

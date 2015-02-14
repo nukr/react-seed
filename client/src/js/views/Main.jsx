@@ -2,13 +2,13 @@ const React = require('react');
 const action = require('../actions/AppActionCreator');
 const store = require('../stores/SimpleStore');
 
-function getTruth() {
+function getState() {
   return store.getTruth();
 }
 
 let Main = React.createClass({
   getInitialState(){
-    return getTruth();
+    return getState();
   },
 
   componentDidMount(){
@@ -20,7 +20,7 @@ let Main = React.createClass({
   },
 
   change() {
-    this.setState(getTruth());
+    this.setState(getState());
   },
 
   render() {

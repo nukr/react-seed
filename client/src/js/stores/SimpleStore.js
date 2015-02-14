@@ -5,6 +5,7 @@ const actions = require('../actions/AppActionCreator');
 const EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣播器
 
 let Store = {};
+let State = {};
 
 /**
  * @description
@@ -19,7 +20,7 @@ let Store = {};
 Object.assign(Store, EventEmitter.prototype, {
 
   getTruth() {
-    return {};
+    return State;
   },
 
   addChangeListener(callback) {

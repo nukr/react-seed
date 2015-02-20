@@ -6,6 +6,7 @@ module.exports = keyMirror({
   SOURCE_SERVER_ACTION: null,
   SOURCE_ROUTER_ACTION: null,
   DATA_LOAD: null,
+  INIT: null,
   CHANGE_EVENT: null
 
 });

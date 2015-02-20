@@ -46,7 +46,8 @@ Store.dispatchToken = AppDispatcher.register(function eventHandlers(evt) {
 
   switch (action.actionType) {
 
-    case AppConstants.SAVE:
+    case AppConstants.INIT:
+      State.data = action.items.body;
       Store.emit(AppConstants.CHANGE_EVENT);
       break;
 

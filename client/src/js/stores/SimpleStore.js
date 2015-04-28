@@ -19,15 +19,15 @@ let State = {};
 
 Object.assign(Store, EventEmitter.prototype, {
 
-  getTruth() {
+  getState () {
     return State;
   },
 
-  addChangeListener(callback) {
+  addChangeListener (callback) {
     this.on(AppConstants.CHANGE_EVENT, callback);
   },
 
-  removeChangeListener(callback) {
+  removeChangeListener (callback) {
     this.removeListener(AppConstants.CHANGE_EVENT, callback);
   }
 
@@ -40,20 +40,25 @@ Object.assign(Store, EventEmitter.prototype, {
  * 可以用在 waitFor 裡面，當有兩個以上的 AppDispatcher 註冊這個事件就可以靠這個 Token
  * 安排順序
  */
-Store.dispatchToken = AppDispatcher.register(function eventHandlers(evt) {
+Store.dispatchToken = AppDispatcher.register(function eventHandlers (evt) {
 
   var action = evt.action;
 
   switch (action.actionType) {
 
     case AppConstants.INIT:
-      State.data = action.items.body;
+      State.data = action.items;
+      Store.emit(AppConstants.CHANGE_EVENT);
+      break;
+
+    case AppConstants.GET_DATA:
+      State.localdata = action.items;
       Store.emit(AppConstants.CHANGE_EVENT);
       break;
 
     default:
   }
-})
+});
 
 
 module.exports = Store;

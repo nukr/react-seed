@@ -1,14 +1,28 @@
-const superagent = require('superagent');
+import superagent from 'superagent';
 
-exports.getInitialData = function () {
+export let getInitialData = function () {
   return new Promise(function (resolve, reject) {
     superagent
       .get('http://mtgjson.com/json/FRF-x.json')
-      .end(function (res) {
-        if (res.ok) {
-          resolve(res);
+      .end((err, res) => {
+        if (err) {
+          reject(err);
         } else {
-          reject(res);
+          resolve(res);
+        }
+      });
+  });
+};
+
+export let getData = () => {
+  return new Promise(function (resolve, reject) {
+    superagent
+      .get('http://localhost:12345/products')
+      .end((err, res) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(res);
         }
       });
   });

@@ -1,36 +1,36 @@
-const React = require('react');
+import React, {Component} from 'react';
 const action = require('../actions/AppActionCreator');
 const store = require('../stores/SimpleStore');
 
-function getState() {
-  return store.getTruth();
-}
+class Main extends Component {
+  constructor () {
+    super();
+    this.state = {
+      store: store.getState()
+    };
+    this.change = () => {
+      this.setState({
+        store: store.getState()
+      });
+    };
+  }
 
-let Main = React.createClass({
-  getInitialState(){
-    return getState();
-  },
-
-  componentDidMount(){
+  componentDidMount () {
     store.addChangeListener(this.change);
-  },
+    action.getData();
+  }
 
-  componentWillUnmount(){
+  componentWillUnmount () {
     store.removeChangeListener(this.change);
-  },
+  }
 
-  change() {
-    this.setState(getState());
-  },
-
-  render() {
-    return(
+  render () {
+    return (
       <div className="main">
         <h1>Hello React</h1>
       </div>
-    )
+    );
   }
+}
 
-})
-
-module.exports = Main;
+export default Main;

@@ -6,18 +6,28 @@ const co = require('co');
 
 let AppActionCreators = {
 
-  load(){
+  load () {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.DATA_LOAD,
       items: data
     });
   },
 
-  initialize(){
-    co(function* () {
+  initialize () {
+    co(function * () {
       let data = yield utils.getInitialData();
       AppDispatcher.handleViewAction({
         actionType: AppConstants.INIT,
+        items: data
+      });
+    });
+  },
+
+  getData () {
+    co(function * () {
+      let data = yield utils.getData();
+      AppDispatcher.handleViewAction({
+        actionType: AppConstants.GET_DATA,
         items: data
       });
     });

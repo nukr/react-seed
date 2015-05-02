@@ -1,6 +1,9 @@
 import React from 'react';
 import css from '../less/style.less';
 import action from './actions/ViewActionCreator';
-import Main from './views/Main.react';
+import routes from './routes';
+import Router from 'react-router';
 
-React.render(<Main/>, document.getElementById('react'));
+Router.run(routes, (Handler) => {
+  React.render(<Handler/>, document.body);
+});

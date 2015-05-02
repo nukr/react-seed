@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {RouteHandler} from 'react-router';
 import action from '../actions/ViewActionCreator';
 import AppStore from '../stores/AppStore';
 
@@ -28,6 +29,7 @@ class Main extends Component {
     return (
       <div>
         <h1>Hello React</h1>
+        <RouteHandler/>
       </div>
     );
   }

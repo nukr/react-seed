@@ -1,0 +1,31 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+    "generator-star": [2, "middle"],
+    "curly": [2, "multi-line"],
+    "no-alert": 0,
+    "no-undef": 0,
+    "no-unused-vars": 0,
+    "no-use-before-define": 0,
+    "quotes": [2, "single", "avoid-escape"],
+    "no-underscore-dangle": 0,
+    "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
+    "new-cap": [2, { "newIsCap": false, "capIsNew": false }],
+    "strict": 0,
+    "space-after-keywords": [2, "always"],
+    "space-before-blocks": [2, "always"],
+    "space-before-function-parentheses": [2, "always"],
+    "space-in-brackets": 0,
+    "space-in-parens": [2, "never"],
+    "space-infix-ops": 2,
+    "space-return-throw-case": 2,
+    "space-unary-ops": [2, { "words": true, "nonwords": false }],
+    "spaced-line-comment": [2, "always"]
+  }
+}

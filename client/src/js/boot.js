@@ -1,8 +1,6 @@
-const React = require('react');
-const Main = React.createFactory(require('./views/Main.react'));
-const css = require('../less/style.less');
-const action = require('./actions/AppActionCreator');
+import React from 'react';
+import css from '../less/style.less';
+import action from './actions/ViewActionCreator';
+import Main from './views/Main.react';
 
-action.initialize();
-
-React.render(Main(), document.getElementById('react'));
+React.render(<Main/>, document.getElementById('react'));

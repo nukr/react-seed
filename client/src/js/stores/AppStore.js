@@ -1,11 +1,11 @@
-const AppDispatcher = require('../dispatcher/AppDispatcher');
-const AppConstants = require('../constants/AppConstants');
-const actions = require('../actions/AppActionCreator');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import AppConstants from '../constants/AppConstants';
+import EventEmitter from 'eventemitter2';
+import ApiUtils from '../utils';
 
-const EventEmitter = require('events').EventEmitter; // 取得一個 pub/sub 廣播器
-
-let Store = {};
 let State = {};
+State.data = null;
+State.loading = null;
 
 /**
  * @description
@@ -17,21 +17,28 @@ let State = {};
  * 主要是讓他能有 .on .emit 這兩個功能
  */
 
-Object.assign(Store, EventEmitter.prototype, {
-
+class Store extends EventEmitter {
   getState () {
-    return State;
-  },
+    if (State.data === null) {
+      ApiUtils.getData();
+      State.loading = true;
+      return State;
+    } else {
+      State.loading = false;
+      return State;
+    }
+  }
 
   addChangeListener (callback) {
     this.on(AppConstants.CHANGE_EVENT, callback);
-  },
+  }
 
   removeChangeListener (callback) {
     this.removeListener(AppConstants.CHANGE_EVENT, callback);
   }
+}
 
-});
+let store = new Store();
 
 /**
  * 這邊是接收 Dispatcher 的地方，我們會針對 action.actionType 去 switch
@@ -40,25 +47,27 @@ Object.assign(Store, EventEmitter.prototype, {
  * 可以用在 waitFor 裡面，當有兩個以上的 AppDispatcher 註冊這個事件就可以靠這個 Token
  * 安排順序
  */
-Store.dispatchToken = AppDispatcher.register(function eventHandlers (evt) {
+store.dispatchToken = AppDispatcher.register(function eventHandlers (evt) {
 
   var action = evt.action;
 
   switch (action.actionType) {
 
-    case AppConstants.INIT:
-      State.data = action.items;
-      Store.emit(AppConstants.CHANGE_EVENT);
-      break;
-
     case AppConstants.GET_DATA:
-      State.localdata = action.items;
-      Store.emit(AppConstants.CHANGE_EVENT);
-      break;
+      if (evt.source === AppConstants.SOURCE_VIEW_ACTION) {
+        // Do View Action
+      }
 
+      if (evt.source === AppConstants.SOURCE_SERVER_ACTION) {
+        // Do Server Action
+        State.data = action.data;
+      }
+
+      store.emit(AppConstants.CHANGE_EVENT);
+      break;
     default:
   }
 });
 
+export default store;
 
-module.exports = Store;

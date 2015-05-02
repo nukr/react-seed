@@ -1,32 +1,32 @@
 import React, {Component} from 'react';
-const action = require('../actions/AppActionCreator');
-const store = require('../stores/SimpleStore');
+import action from '../actions/ViewActionCreator';
+import AppStore from '../stores/AppStore';
+
+let getState = () => {
+  return {
+    AppStore: AppStore.getState()
+  };
+};
 
 class Main extends Component {
   constructor () {
     super();
-    this.state = {
-      store: store.getState()
-    };
-    this.change = () => {
-      this.setState({
-        store: store.getState()
-      });
-    };
+    this.state = getState();
+    this.change = () => this.setState(getState());
   }
 
   componentDidMount () {
-    store.addChangeListener(this.change);
-    action.getData();
+    AppStore.addChangeListener(this.change);
   }
 
   componentWillUnmount () {
-    store.removeChangeListener(this.change);
+    AppStore.removeChangeListener(this.change);
   }
 
   render () {
+    console.log(this.state);
     return (
-      <div className="main">
+      <div>
         <h1>Hello React</h1>
       </div>
     );

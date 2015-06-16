@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {RouteHandler} from 'react-router';
 import action from '../actions/ViewActionCreator';
 import AppStore from '../stores/AppStore';
+import {Link} from 'react-router'
 
 let getState = () => {
   return {
@@ -25,11 +25,10 @@ class Main extends Component {
   }
 
   render () {
-    console.log(this.state);
     return (
       <div>
         <h1>Hello React</h1>
-        <RouteHandler/>
+        {this.props.children}
       </div>
     );
   }

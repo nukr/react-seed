@@ -1,9 +1,8 @@
 import React from 'react';
 import css from '../less/style.less';
 import action from './actions/ViewActionCreator';
-import routes from './routes';
-import Router from 'react-router';
+import {Router, Route} from 'react-router';
+import routes from './routes'
+import HashHistory from 'react-router/lib/HashHistory'
 
-Router.run(routes, (Handler) => {
-  React.render(<Handler/>, document.body);
-});
+React.render(<Router history={HashHistory} children={routes}/>, document.body)

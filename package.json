@@ -5,7 +5,8 @@
   "repository": "https://github.com/nukr/react-seed.git",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "gulp"
   },
   "keywords": [
     "react",

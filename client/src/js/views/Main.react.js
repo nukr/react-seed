@@ -28,6 +28,10 @@ class Main extends Component {
     return (
       <div>
         <h1>Hello React</h1>
+        <div style={{display: 'flex', flexFlow: 'row', justifyContent: 'space-around'}}>
+          <Link to="/">1p</Link>
+          <Link to="insert-coin">2p</Link>
+        </div>
         {this.props.children}
       </div>
     );

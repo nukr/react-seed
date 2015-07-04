@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "gulp"
+    "start": "cp ./client/html/index.development.html ./build/index.html  && webpack"
   },
   "keywords": [
     "react",
@@ -15,9 +15,11 @@
   "author": "nukr",
   "license": "MIT",
   "dependencies": {
+    "alt": "^0.17.0",
     "co": "^4.5.2",
     "eventemitter2": "^0.4.14",
     "flux": "^2.0.3",
+    "koa": "^0.21.0",
     "react": "^0.13.3",
     "react-router": "^1.0.0-beta1"
   },

@@ -2,10 +2,10 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    './client/src/js/boot.js'
+    './client/js/boot.js'
   ],
   output: {
-    path: __dirname + '/client/build',
+    path: __dirname + '/build',
     filename: 'bundle.js'
   },
   resolve: {

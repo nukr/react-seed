@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "start": "cp ./client/html/index.development.html ./build/index.html  && webpack"
+    "clean": "rm -rf build && mkdir build",
+    "html": "cp client/html/index.development.html build/index.html",
+    "start": "npm run clean && npm run html  && webpack"
   },
   "keywords": [
     "react",
@@ -39,6 +41,7 @@
     "require-dir": "^0.3.0",
     "style-loader": "^0.12.1",
     "url-loader": "^0.5.5",
-    "webpack": "^1.8.11"
+    "webpack": "^1.8.11",
+    "webpack-dev-server": "^1.10.1"
   }
 }
